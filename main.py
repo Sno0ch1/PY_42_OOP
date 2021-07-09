@@ -1,3 +1,32 @@
+def stud_course_avg_grade(current_course, students):
+    for student in students:
+        avg_grade = 0
+        qty_grades = 0
+        sum_grades = 0
+        for student_course, grades in student.grades.items():
+            if student_course == current_course:
+                for grade in grades:
+                    sum_grades += grade
+                    qty_grades += 1
+                avg_grade = sum_grades / qty_grades
+                print(f'Средняя оценка студента {student.surname} по курсу {current_course} = {avg_grade}')
+    return 'Вывод завершен\n'
+
+
+def lect_course_avg_grade(current_course, lectors):
+    for lector in lectors:
+        avg_grade = 0
+        qty_grades = 0
+        sum_grades = 0
+        for lector_course, grades in lector.grades.items():
+            if lector_course == current_course:
+                for grade in grades:
+                    sum_grades += grade
+                    qty_grades += 1
+                avg_grade = sum_grades / qty_grades
+                print(f'Средняя оценка лектора {lector.surname} по курсу {current_course} = {avg_grade}')
+    return 'Вывод завершен\n'
+
 class Student:
     def __init__(self, name, surname, gender):
         self.name = name
@@ -24,7 +53,9 @@ class Student:
                 sum_grade += grade
                 qty_grade += 1
         avg_grade = sum_grade / qty_grade
-        massage = f'Имя: {self.name} \nФамилия: {self.surname} \nСредняя оценка за домашнее задание: {avg_grade} \nКурсы в процессе изучения: {self.courses_in_progress} \nЗавершенные курсы: {self.finished_courses}\n'
+        massage = f'Имя: {self.name} \nФамилия: {self.surname} \nСредняя оценка за домашнее задание: {avg_grade} \n' \
+                  f'Курсы в процессе изучения: {self.courses_in_progress} \nЗавершенн' \
+                  f'ые курсы: {self.finished_courses}\n '
         return massage
 
     def __lt__(self, other):
@@ -176,3 +207,11 @@ print(lecturer1)
 print(reviewer1)
 print(lecturer1 > lecturer2)
 print(stud1 < stud2)
+print()
+
+course = 'Java'
+student_list = [stud1, stud2]
+lecturer_list = [lecturer1, lecturer2]
+
+print(stud_course_avg_grade(course, student_list))
+print(lect_course_avg_grade(course, lecturer_list))
